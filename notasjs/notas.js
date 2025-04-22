@@ -2,15 +2,16 @@
 
 function procesarDatos(){
   /*obtener los datos del formulario */
-  /*usamos un CONST para declarar constantes, con ello guardaremos en el arreglo las 5 notas */
-  /*parseFloat convierte el texto en número decimal. */
-  const notas = [
-    parseFloat(document.getElementById('nota1').value),
-    parseFloat(document.getElementById('nota2').value),
-    parseFloat(document.getElementById('nota3').value),
-    parseFloat(document.getElementById('nota4').value),
-    parseFloat(document.getElementById('nota5').value),
-];
+  
+/*otra forma de reaizar es */
+    var v1 = document.getElementById("nota1").value;
+    var v2 = document.getElementById("nota2").value;
+    var v3 = document.getElementById("nota3").value;
+    var v4 = document.getElementById("nota4").value;
+    var v5 = document.getElementById("nota5").value;
+    
+    /*arreglo para validar notas*/
+      var notas = [v1, v2, v3, v4, v5]; 
     /*VALIDAR LAS NOTAS DE 0 A 10 */
     function numeroEnRango(numero,inicio,final){
         if(inicio < final){
@@ -28,20 +29,20 @@ function procesarDatos(){
     }
     
     /*calcular promedios y pase de semestre*/
-    const suma = notas.reduce((acumulador, nota) => acumulador + nota, 0);
-    const promedio = suma / notas.length;
-
-    let resultado = "";
-    if (promedio > 7) {
-        resultado = `Promedio: ${promedio.toFixed(2)}. Pasaste el año.`;
-    } else if (promedio <= 3.5) {
-        resultado = `Promedio: ${promedio.toFixed(2)}. Perdiste el semestre.`;
+      /*para el calculo del promedio */
+     
+      var pro = (parseFloat(v1)+parseFloat(v2)+parseFloat(v3)+parseFloat(v4)+parseFloat(v5))/5;
+   
+    var resultado = "";
+    if (pro >= 7) {
+        resultado = ("Pasaste el semestre");
+       
+    } else if (pro <= 3.5) {
+        resultado = ("Perdiste el semestre");
     } else {
-        resultado = `Promedio: ${promedio.toFixed(2)}. Supletorio.`;
+        resultado = ("supletorio")
     }
-
-    // Mostrar el resultado al usuario
-    alert(resultado);
-
+// Mostrar el resultado en el div con id 'resultado'
+document.getElementById("resultado").innerHTML = resultado + " - Promedio: " + pro.toFixed(2);
 }
     
